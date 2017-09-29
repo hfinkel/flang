@@ -23,7 +23,6 @@ add_definitions(
  -DPGF90 
  -DPGFLANG
  -DNATIVE_FPCVT
- -DPGI_LITTLE_ENDIAN
 )
 
 if( ${TARGET_ARCHITECTURE} STREQUAL "x86_64" )
@@ -32,11 +31,19 @@ elseif( ${TARGET_ARCHITECTURE} STREQUAL "aarch64" )
   add_definitions(
    -DTARGET_LLVM_ARM64
    -DTARGET_LINUX_ARM
+   -DPGI_LITTLE_ENDIAN
+  )
+elseif( ${TARGET_ARCHITECTURE} STREQUAL "ppc64" )
+  add_definitions(
+    -DTARGET_LINUX_POWER
+    -DLINUX_POWER
+    -DPGI_BIG_ENDIAN
   )
 elseif( ${TARGET_ARCHITECTURE} STREQUAL "ppc64le" )
   add_definitions(
     -DTARGET_LINUX_POWER
     -DLINUX_POWER
+    -DPGI_LITTLE_ENDIAN
   )
 endif()
 

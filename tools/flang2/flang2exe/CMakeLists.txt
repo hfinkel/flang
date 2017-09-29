@@ -22,6 +22,10 @@ elseif( ${TARGET_ARCHITECTURE} STREQUAL "aarch64" )
   set(ARCH_DEP_FILES
       aarch64-Linux/ll_abi.c
   )
+elseif( ${TARGET_ARCHITECTURE} STREQUAL "ppc64" )
+  set(ARCH_DEP_FILES
+    ppc64-Linux/ll_abi.c
+  )
 elseif( ${TARGET_ARCHITECTURE} STREQUAL "ppc64le" )
   set(ARCH_DEP_FILES
     ppc64le-Linux/ll_abi.c

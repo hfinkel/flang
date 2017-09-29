@@ -26,6 +26,9 @@ INSN=call
 ifeq ($(findstring armv7l, $(UNAME)), armv7l)
     INSN=bl
 endif
+ifeq ($(findstring ppc64, $(UNAME)), ppc64)
+    INSN=bl
+endif
 ifeq ($(findstring ppc64le, $(UNAME)), ppc64le)
     INSN=bl
 endif

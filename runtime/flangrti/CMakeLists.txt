@@ -31,6 +31,11 @@ elseif( ${TARGET_ARCHITECTURE} STREQUAL "aarch64" )
       aarch64-Linux/flt_env.c
       aarch64-Linux/dumpregs.c
   )
+elseif( ${TARGET_ARCHITECTURE} STREQUAL "ppc64" )
+  set(ARCH_DEP_FILES
+    ppc64-Linux/flt_env.c
+    ppc64-Linux/dumpregs.c
+  )
 elseif( ${TARGET_ARCHITECTURE} STREQUAL "ppc64le" )
   set(ARCH_DEP_FILES
     ppc64le-Linux/flt_env.c
@@ -203,6 +208,9 @@ endif()
 if( ${TARGET_ARCHITECTURE} STREQUAL "aarch64" )
   target_compile_definitions(flangrti_static PRIVATE TARGET_LINUX_ARM)
   target_compile_definitions(flangrti_shared PRIVATE TARGET_LINUX_ARM)
+elseif( ${TARGET_ARCHITECTURE} STREQUAL "ppc64" )
+  target_compile_definitions(flangrti_static PRIVATE TARGET_LINUX_POWER)
+  target_compile_definitions(flangrti_shared PRIVATE TARGET_LINUX_POWER)
 elseif( ${TARGET_ARCHITECTURE} STREQUAL "ppc64le" )
   target_compile_definitions(flangrti_static PRIVATE TARGET_LINUX_POWER)
   target_compile_definitions(flangrti_shared PRIVATE TARGET_LINUX_POWER)
