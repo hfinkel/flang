@@ -38,7 +38,7 @@ a1tos1(INT *from, INT *to, INT count)
 
   i = 0;
   while (n--) {
-    to[i] = *(char *)(&from[i]); /* let c fetch find the char */
+    to[i] = (char) (from[i] & 0xff); /* let c fetch find the char */
     i++;
   }
 
@@ -296,8 +296,7 @@ s1toa1(INT *from, INT *to, INT *count)
     util_error("s1toa1 - bad count", FPS_ERR, ABORT);
 
   for (i = 0; i < (*count); ++i) {
-    to[i] = 0x20202020;
-    *((char *)&to[i]) = from[i];
+    to[i] = 0x20202000 | (unsigned int) ((char) from[i]);
   }
 }
 
