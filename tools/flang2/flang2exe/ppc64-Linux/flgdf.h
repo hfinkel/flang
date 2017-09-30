@@ -53,7 +53,7 @@ FLG flg = {
     0,          /* inline: 0 == none: num == max # ilms */
     0,          /* autoinline */
     0,          /* vect: 0 = none:    num == vect item */
-    0,          /* little endian */
+    1,          /* big endian */
     FALSE,      /* not terse for summary, etc. */
     '_',        /* default is to change '$' to '_' */
     {0},        /*  x flags  */
