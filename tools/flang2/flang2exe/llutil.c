@@ -1793,6 +1793,7 @@ write_constant_value(int sptr, LL_Type *type, INT conval0, INT conval1,
     double d;
     INT tmp[2];
   } dtmp, dtmp2;
+  INT swap;
   char constant1[9], constant2[9];
 
   static char d[256];
@@ -1933,6 +1934,13 @@ write_constant_value(int sptr, LL_Type *type, INT conval0, INT conval1,
     xdble(xx.ww, dtmp2.tmp);
     xdtomd(dtmp2.tmp, &dtmp.d);
     snprintf(d, 200, "%.8e", dtmp.d);
+
+    if (flg.endian) {
+      swap = dtmp.tmp[0];
+      dtmp.tmp[0] = dtmp.tmp[1];
+      dtmp.tmp[1] = swap;
+    }
+
     if (dtmp.tmp[0] == -1) /* pick up the quiet nan */
       sprintf(constant1, "7FF80000");
     else if (!dtmp.tmp[1])
