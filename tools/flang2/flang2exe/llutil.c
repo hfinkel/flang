@@ -1779,6 +1779,13 @@ write_vconstant_value(int sptr, LL_Type *type)
   fprintf(LLVMFIL, ">");
 }
 
+static bool
+is_host_little_endian(void)
+{
+  static const int one = 1;
+  return *(const char *) &one != 0;
+}
+
 /**
    \brief Write a constant value to the output llvm file
  */
@@ -1935,7 +1942,7 @@ write_constant_value(int sptr, LL_Type *type, INT conval0, INT conval1,
     xdtomd(dtmp2.tmp, &dtmp.d);
     snprintf(d, 200, "%.8e", dtmp.d);
 
-    if (flg.endian) {
+    if (!is_host_little_endian()) {
       swap = dtmp.tmp[0];
       dtmp.tmp[0] = dtmp.tmp[1];
       dtmp.tmp[1] = swap;
